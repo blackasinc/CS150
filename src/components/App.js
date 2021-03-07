@@ -22,7 +22,7 @@ class App extends React.Component {
       isLoading: true
     });
 
-    postToApi(this.state.splitsheet)
+    postToApi(splitsheet)
       .then(result => this.setState({ ...result, isLoading: false }));
   };
 

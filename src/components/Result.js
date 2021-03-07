@@ -1,7 +1,6 @@
 import React from 'react';
 
 const StatusDisplay = props => {
-    console.log(props);
     if (props.splitsheetId) {
         return (
             <div>
