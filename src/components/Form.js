@@ -20,24 +20,27 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Song Title:</label>
-        <input type="text"
-          value={this.state.song_title}
-          onChange={(event) => this.setState({song_title: event.target.value})} />
-        <br />
-        <label>Signed Date:</label>
-        <input type="date"
-          value={this.state.signed_date}
-          onChange={(event) => this.setState({signed_date: event.target.value})} />
-        <br />
-        <label>Location:</label>
-        <input type="text"
-          value={this.state.location}
-          onChange={(event) => this.setState({location: event.target.value})} />
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        <h1>Make a Splitsheet</h1>
+        <form onSubmit={this.handleSubmit}>
+          <label>Song Title:</label>
+          <input type="text"
+            value={this.state.song_title}
+            onChange={(event) => this.setState({song_title: event.target.value})} />
+          <br />
+          <label>Signed Date:</label>
+          <input type="date"
+            value={this.state.signed_date}
+            onChange={(event) => this.setState({signed_date: event.target.value})} />
+          <br />
+          <label>Location:</label>
+          <input type="text"
+            value={this.state.location}
+            onChange={(event) => this.setState({location: event.target.value})} />
+          <br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }

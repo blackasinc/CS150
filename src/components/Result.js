@@ -1,12 +1,13 @@
 import React from 'react';
 
 const ResultDisplay = props => {
-    if (props.errorCode) {
+    console.log(props);
+    if (props.error.errorCode) {
         return (
             <div>
                 <h1>Failed to Post</h1>
-                status code {props.errorCode}
-                message {props.errorMessage}
+                status code {props.error.errorCode}
+                message {props.error.errorMessage}
             </div>
         );
     } else {

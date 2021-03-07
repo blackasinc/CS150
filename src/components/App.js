@@ -2,6 +2,7 @@ import React from 'react';
 import loadingGif from '../resources/loading.gif';
 import Form from './Form';
 import Result from './Result';
+import postToApi from '../helper/postToApi';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,29 +22,8 @@ class App extends React.Component {
       isLoading: true
     });
 
-    fetch('https://virtserver.swaggerhub.com/santidmar/SplitSheetAPI/2.0.0/splitsheet', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: this.state.splitsheet
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw Error(response);
-      }
-    })
-    .then(data => this.setState({splitsheetId: data.splitsheetId}))
-    .catch(response => {
-      this.setState({
-        errorCode: response.status,
-        errorMessage: response.statusText
-      })
-    })
-    .finally(() => this.setState({isLoading: false}));
+    postToApi(this.state.splitsheet)
+      .then(result => this.setState({ ...result, isLoading: false }));
   };
 
   resetState = () => {
@@ -56,23 +36,19 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.splitsheet) {
+    if (this.state.isLoading) {
+      return (
+        <img src={loadingGif} alt='Loading' />
+      );
+    } else if (this.state.splitsheet) {
       return (
         <Result onReturn={this.resetState}
           splitsheet={{ ...this.state.splitsheet, splitsheetId: this.state.splitsheetId }} 
           error={{ errorCode: this.state.errorCode, errorMessage: this.state.errorMessage }} />
       );
-    }
-    if (this.state.isLoading) {
-      return (
-        <img src={loadingGif} alt='Loading' />
-      );
     } else {
       return (
-        <div>
-          <h1>Make a Splitsheet</h1>
-          <Form onSubmit={this.postForm} />
-        </div>
+        <Form onSubmit={this.postForm} />
       );
     }
   }
