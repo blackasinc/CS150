@@ -23,11 +23,11 @@ class Form extends React.Component {
     this.setState(prevState => {
       const newUser = {
         first_name: '',
-        last_name: 'Johnson',
-        email: 'coolguy@dude.com',
-        phone_number: '714-555-1234',
-        ownership_percentage: 66.7,
-        signature: 'd290f1ee-6c54-4b01-90e6-d701748f0851'
+        last_name: '',
+        email: '',
+        ownership_percentage: '',
+        phone_number: '',
+        signature: ''
       }
       return {
         users: prevState.users.concat([newUser])
@@ -54,8 +54,63 @@ class Form extends React.Component {
                     value={value.first_name}
                     onChange={(event) => {
                       this.setState(prevState => {
-                        const newState = Object.assign({}, prevState);
+                        const newState = { users: [...prevState.users] };
                         newState.users[index].first_name = event.target.value;
+                        return newState;
+                      });
+                    }} />
+                  <br />
+                  <label>User #{index + 1} Last Name:</label>
+                  <input type="text"
+                    value={value.last_name}
+                    onChange={(event) => {
+                      this.setState(prevState => {
+                        const newState = { users: [...prevState.users] };
+                        newState.users[index].last_name = event.target.value;
+                        return newState;
+                      });
+                    }} />
+                  <br />
+                  <label>User #{index + 1} Email:</label>
+                  <input type="email"
+                    value={value.email}
+                    onChange={(event) => {
+                      this.setState(prevState => {
+                        const newState = { users: [...prevState.users] };
+                        newState.users[index].email = event.target.value;
+                        return newState;
+                      });
+                    }} />
+                  <br />
+                  <label>User #{index + 1} Phone Number:</label>
+                  <input type="tel"
+                    value={value.phone_number}
+                    onChange={(event) => {
+                      this.setState(prevState => {
+                        const newState = { users: [...prevState.users] };
+                        newState.users[index].phone_number = event.target.value;
+                        return newState;
+                      });
+                    }} />
+                  <br />
+                  <label>User #{index + 1} Ownership Percent:</label>
+                  <input type="number"
+                    value={value.ownership_percentage}
+                    onChange={(event) => {
+                      this.setState(prevState => {
+                        const newState = { users: [...prevState.users] };
+                        newState.users[index].ownership_percentage = event.target.value;
+                        return newState;
+                      });
+                    }} />
+                  <br />
+                  <label>User #{index + 1} Signature:</label>
+                  <input type="text"
+                    value={value.signature}
+                    onChange={(event) => {
+                      this.setState(prevState => {
+                        const newState = { users: [...prevState.users] };
+                        newState.users[index].signature = event.target.value;
                         return newState;
                       });
                     }} />
@@ -66,6 +121,7 @@ class Form extends React.Component {
           <button onClick={this.addUser}>
             Add User
           </button>
+          <br />
           <label>Signed Date:</label>
           <input type="date"
             value={this.state.signed_date}

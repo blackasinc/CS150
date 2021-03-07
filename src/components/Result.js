@@ -36,6 +36,11 @@ const Result = props => (
           return (
             <div key={index}>
               <li>User #{index + 1} First Name: {value.first_name}</li>
+              <li>User #{index + 1} Last Name: {value.last_name}</li>
+              <li>User #{index + 1} Email: {value.email}</li>
+              <li>User #{index + 1} Phone Number: {value.phone_number}</li>
+              <li>User #{index + 1} Ownership Percentage: {value.ownership_percentage}</li>
+              <li>User #{index + 1} Signature: {value.signature}</li>
             </div>
           )
         })
