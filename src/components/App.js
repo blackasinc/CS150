@@ -1,38 +1,68 @@
 import React from 'react';
-import './App.css';
+import loadingGif from '../resources/loading.gif';
 import Form from './Form';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      splitsheetId: null
+      splitsheetId: null,
+      splitsheet: null,
+      errorCode: null,
+      errorMessage: null,
+      isLoading: false,
     };
   }
 
-  postForm = (name) => {
+  postForm = (splitsheet) => {
+    this.setState({
+      splitsheet: splitsheet,
+      isLoading: true
+    });
+
+    console.log('Splitsheet:');
+    console.log(splitsheet);
+
     fetch('https://virtserver.swaggerhub.com/santidmar/SplitSheetAPI/1.0.0/splitsheet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({
-        writerName: name,
-        songName: 'So Icy',
-        date: {},
-        splitPercent: 66.7,
-        signature: 'd290f1ee-6c54-4b01-90e6-d701748f0851'
+      body: this.state.splitsheet
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw Error(response);
+      }
+    })
+    .then(data => {
+      console.log(`Splitsheet ID ${data.splitsheetId}`)
+      this.setState({splitsheetId: data.splitsheetId})
+    })
+    .catch(response => {
+      console.error(`Failed to POST; Status code ${response.status}`);
+      console.error(response.statusText);
+      this.setState({
+        errorCode: response.status,
+        errorMessage: response.statusText
       })
     })
-    .then(response => response.json())
-    .then(data => this.setState({splitsheetId: data.splitsheetId}));
+    .finally(() => this.setState({isLoading: false}));
   };
 
   render() {
-    return (
-      <Form onSubmit={this.postForm} />
-    );
+    if (this.state.isLoading) {
+      return (
+        <img src={loadingGif} alt='Loading' />
+      )
+    } else {
+      return (
+        <Form onSubmit={this.postForm} />
+      );
+    }
   }
 }
 
