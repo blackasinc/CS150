@@ -7,7 +7,7 @@ class Form extends React.Component {
     this.state = {
       song_title: '',
       users: [],
-      signed_date: '2011-01-25',
+      signed_date: '',
       location: ''
     };
   }

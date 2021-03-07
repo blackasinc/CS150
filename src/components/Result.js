@@ -6,10 +6,10 @@ const StatusDisplay = props => {
       <div>
         <h1>Form Submission Succeeded</h1>
         <p>
-          form successfully posted w/ splitsheet ID {props.splitsheetId}
+          Persisted splitsheet w/ ID {props.splitsheetId}
         </p>
       </div>
-        );
+    );
   } else {
     return (
       <div>

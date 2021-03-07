@@ -26,7 +26,7 @@ async function postToApi(splitsheet) {
       errorCode: error.status,
       errorMessage: error.statusText
     }
-  })
+  });
   return result;
 }
 
