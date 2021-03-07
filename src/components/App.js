@@ -15,13 +15,13 @@ class App extends React.Component {
     };
   }
 
-  postForm = (splitsheet) => {
+  postForm = splitsheet => {
     this.setState({
       splitsheet: splitsheet,
       isLoading: true
     });
 
-    fetch('https://virtserver.swaggerhub.com/santidmar/SplitSheetAPI/1.0.0/splitsheet', {
+    fetch('https://virtserver.swaggerhub.com/santidmar/SplitSheetAPI/2.0.0/splitsheet', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,9 +36,7 @@ class App extends React.Component {
         throw Error(response);
       }
     })
-    .then(data => {
-      this.setState({splitsheetId: data.splitsheetId})
-    })
+    .then(data => this.setState({splitsheetId: data.splitsheetId}))
     .catch(response => {
       this.setState({
         errorCode: response.status,
@@ -72,7 +70,7 @@ class App extends React.Component {
     } else {
       return (
         <div>
-          <h1>Enter Splitsheet Details</h1>
+          <h1>Make a Splitsheet</h1>
           <Form onSubmit={this.postForm} />
         </div>
       );

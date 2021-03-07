@@ -14,11 +14,10 @@ const ResultDisplay = props => {
             <div>
                 <h1>Form Submission Succeeded</h1>
                 <ul>
-                    <li>Writer Name: {props.splitsheet.writerName}</li>
-                    <li>Song Name: {props.splitsheet.songName}</li>
-                    <li>Date: {props.splitsheet.date}</li>
-                    <li>Split Percent: {props.splitsheet.splitPercent}</li>
-                    <li>Signature: {props.splitsheet.signature}</li>
+                    <li>Splitsheet ID: {props.splitsheet.splitsheetId}</li>
+                    <li>Song Title: {props.splitsheet.song_title}</li>
+                    <li>Signed Date: {props.splitsheet.signed_date}</li>
+                    <li>Location: {props.splitsheet.location}</li>
                 </ul>
             </div>
         );
