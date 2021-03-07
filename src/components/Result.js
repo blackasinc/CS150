@@ -1,25 +1,25 @@
 import React from 'react';
 
-const ResultDisplay = props => {
+const StatusDisplay = props => {
     console.log(props);
-    if (props.error.errorCode) {
+    if (props.splitsheetId) {
         return (
             <div>
-                <h1>Failed to Post</h1>
-                status code {props.error.errorCode}
-                message {props.error.errorMessage}
+                <h1>Form Submission Succeeded</h1>
+                <p>
+                    form successfully posted w/ splitsheet ID {props.splitsheetId}
+                </p>
             </div>
         );
     } else {
         return (
             <div>
-                <h1>Form Submission Succeeded</h1>
-                <ul>
-                    <li>Splitsheet ID: {props.splitsheet.splitsheetId}</li>
-                    <li>Song Title: {props.splitsheet.song_title}</li>
-                    <li>Signed Date: {props.splitsheet.signed_date}</li>
-                    <li>Location: {props.splitsheet.location}</li>
-                </ul>
+                <h1>Failed to Post</h1>
+                <p>
+                    status code {props.errorCode}
+                    <br />
+                    message {props.errorMessage}
+                </p>
             </div>
         );
     }
@@ -27,8 +27,14 @@ const ResultDisplay = props => {
 
 const Result = props => (
     <div>
-        <ResultDisplay splitsheet={props.splitsheet}
-            error={props.error} />
+        <StatusDisplay splitsheetId={props.splitsheetId}
+          errorCode={props.errorCode}
+          errorMessage={props.errorMessage} />
+        <ul>
+            <li>Song Title: {props.splitsheet.song_title}</li>
+            <li>Signed Date: {props.splitsheet.signed_date}</li>
+            <li>Location: {props.splitsheet.location}</li>
+        </ul>
         <button onClick={props.onReturn}>
             Return to Form
         </button>

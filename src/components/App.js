@@ -43,8 +43,10 @@ class App extends React.Component {
     } else if (this.state.splitsheet) {
       return (
         <Result onReturn={this.resetState}
-          splitsheet={{ ...this.state.splitsheet, splitsheetId: this.state.splitsheetId }} 
-          error={{ errorCode: this.state.errorCode, errorMessage: this.state.errorMessage }} />
+          splitsheetId={this.state.splitsheetId}
+          splitsheet={this.state.splitsheet}
+          errorCode={this.state.errorCode}
+          errorMessage={this.state.errorMessage} />
       );
     } else {
       return (

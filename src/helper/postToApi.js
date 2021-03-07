@@ -21,6 +21,7 @@ async function postToApi(splitsheet) {
     };
   })
   .catch(error => {
+    console.error(error);
     result = {
       errorCode: error.status,
       errorMessage: error.statusText
