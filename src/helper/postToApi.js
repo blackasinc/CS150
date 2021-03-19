@@ -1,12 +1,12 @@
 async function postToApi(splitsheet) {
   let result;
-  await fetch('https://virtserver.swaggerhub.com/santidmar/SplitSheetAPI/2.0.0/splitsheet', {
+  await fetch('http://brendon.tech/api/splitsheet', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
-    body: splitsheet
+    body: JSON.stringify(splitsheet)
   })
   .then(response => {
     if (response.ok) {
