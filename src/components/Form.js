@@ -133,7 +133,12 @@ class Form extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
+
+        <div>PDF Output <button onClick={this.download}>Download</button></div>
+        <iframe width="100%" height="800px"></iframe>
       </div>
+
+
     );
   }
 }
