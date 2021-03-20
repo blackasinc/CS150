@@ -2,7 +2,7 @@ async function splitsheetToPdf(splitsheetId) {
 
   let result;
 
-  await fetch('http://brendon.tech/api/splitsheet/' + splitsheetId)
+  await fetch('https://brendon.tech/api/splitsheet/' + splitsheetId)
     .then(response => {
       if (response.ok) {
         return response.json();
