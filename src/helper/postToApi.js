@@ -1,6 +1,6 @@
 async function postToApi(splitsheet) {
   let result;
-  await fetch('http://brendon.tech/api/splitsheet', {
+  await fetch('https://brendon.tech/api/splitsheet', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

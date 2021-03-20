@@ -3,10 +3,12 @@ import loadingGif from '../resources/loading.gif';
 import Form from './Form';
 import Result from './Result';
 import postToApi from '../helper/postToApi';
+import splitsheetToPdf from '../helper/splitsheetToPdf';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    splitsheetToPdf('426c1413-fd69-4182-a2eb-3f0f985230b1');//Hardcoded this for now
     this.state = {
       splitsheetId: null,
       splitsheet: null,
