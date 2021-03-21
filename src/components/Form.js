@@ -133,8 +133,6 @@ class Form extends React.Component {
           <br />
           <input type="submit" value="Submit" />
         </form>
-
-        <iframe width="100%" height="800px"></iframe>
       </div>
 
     );
