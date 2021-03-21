@@ -15,7 +15,7 @@ function splitsheetToPdf(splitsheet) {
 
   splitsheet.users.forEach(function(user, i) {
         doc.fontSize(18)
-            .text(`(${i + 1}) ${user.first_name} ${user.first_name}`, { align: 'left'})
+            .text(`(${i + 1}) ${user.first_name} ${user.last_name}`, { align: 'left'})
             .text(`     Phone Number: ${user.phone_number}`)
             .text(`     Email: ${user.email}`)
             .text(`     Ownership %: ${user.ownership_percentage}`);
