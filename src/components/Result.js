@@ -1,4 +1,5 @@
 import React from 'react';
+import PdfDownloadButton from './PdfDownloadButton';
 
 const StatusDisplay = props => {
   if (props.splitsheetId) {
@@ -48,6 +49,8 @@ const Result = props => (
       <li>Signed Date: {props.splitsheet.signed_date}</li>
       <li>Location: {props.splitsheet.location}</li>
     </ul>
+    <PdfDownloadButton splitsheet={props.splitsheet} />
+    <br />
     <button onClick={props.onReturn}>
       Return to Form
     </button>
