@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import getFromApi from '../helper/getFromApi';
 import loadingGif from '../resources/loading.gif';
-import RequestResultDisplay from './RequestResultDisplay';
+import ResultDisplay from './ResultDisplay';
 
 const FETCHING_SPLITSHEET = 0;
 const FETCH_COMPLETE = 1;
@@ -45,7 +45,7 @@ class SplitsheetLookup extends React.Component {
       case (FETCH_COMPLETE):
       default:
         return (
-          <RequestResultDisplay onReturn={this.returnToForm}
+          <ResultDisplay onReturn={this.returnToForm}
             splitsheet={this.state.requestResult.splitsheet}
             splitsheetId={this.getSplitsheetId()}
             requestStatus={this.state.requestResult.status} />

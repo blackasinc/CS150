@@ -61,7 +61,7 @@ const SplitsheetIdDisplay = props => {
   );
 }
 
-const RequestResultDisplay = props => (
+const ResultDisplay = props => (
   <div>
     <RequestStatusDisplay requestStatus={props.requestStatus} />
     {props.splitsheetId ? <SplitsheetIdDisplay splitsheetId={props.splitsheetId} />
@@ -75,4 +75,4 @@ const RequestResultDisplay = props => (
   </div>
 );
 
-export default RequestResultDisplay;
+export default ResultDisplay;
