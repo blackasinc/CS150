@@ -1,57 +1,59 @@
 import React from 'react';
 import loadingGif from '../resources/loading.gif';
 import Form from './Form';
-import Result from './Result';
+import RequestResultDisplay from './RequestResultDisplay';
 import postToApi from '../helper/postToApi';
+
+const SUBMIT_PENDING = 0;
+const SUBMITTING = 1;
+const SUBMITTED = 2;
 
 class SplitsheetForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      splitsheetId: null,
       splitsheet: null,
-      errorCode: null,
-      errorMessage: null,
-      isLoading: false,
+      requestResult: null,
+      formSubmitStatus: SUBMIT_PENDING,
     };
   }
 
   postForm = splitsheet => {
     this.setState({
       splitsheet: splitsheet,
-      isLoading: true
+      formSubmitStatus: SUBMITTING
     });
 
     postToApi(splitsheet)
-      .then(result => this.setState({ ...result, isLoading: false }));
+      .then(requestResult => this.setState({ requestResult, formSubmitStatus: SUBMITTED }));
   };
 
   resetState = () => {
     this.setState({
-      splitsheetId: null,
       splitsheet: null,
-      errorCode: null,
-      errorMessage: null
+      requestResult: null,
+      formSubmitStatus: SUBMIT_PENDING
     });
   }
 
   render() {
-    if (this.state.isLoading) {
-      return (
-        <img src={loadingGif} alt='Loading' />
-      );
-    } else if (this.state.splitsheet) {
-      return (
-        <Result onReturn={this.resetState}
-          splitsheetId={this.state.splitsheetId}
-          splitsheet={this.state.splitsheet}
-          errorCode={this.state.errorCode}
-          errorMessage={this.state.errorMessage} />
-      );
-    } else {
-      return (
-        <Form onSubmit={this.postForm} />
-      );
+    switch (this.state.formSubmitStatus) {
+      case SUBMITTING:
+        return (
+          <img src={loadingGif} alt='Loading' />
+        );
+      case SUBMITTED:
+        return (
+          <RequestResultDisplay onReturn={this.resetState}
+            splitsheet={this.state.splitsheet}
+            splitsheetId={this.state.requestResult.splitsheetId}
+            requestStatus={this.state.requestResult.status} />
+        );
+      case SUBMIT_PENDING:
+      default:
+        return (
+          <Form onSubmit={this.postForm} />
+        );
     }
   }
 }

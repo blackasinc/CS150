@@ -1,5 +1,7 @@
 async function postToApi(splitsheet) {
-  let result;
+  const result = {
+    status: {}
+  };
   await fetch('https://brendon.tech/api/splitsheet', {
     method: 'POST',
     headers: {
@@ -9,6 +11,8 @@ async function postToApi(splitsheet) {
     body: JSON.stringify(splitsheet)
   })
   .then(response => {
+    result.status.statusCode = response.status;
+    result.status.didSucceed = response.ok;
     if (response.ok) {
       return response.json();
     } else {
@@ -16,16 +20,11 @@ async function postToApi(splitsheet) {
     }
   })
   .then(data => {
-    result = {
-      splitsheetId: data.splitsheetId
-    };
+    result.splitsheetId = data.splitsheetId;
   })
   .catch(error => {
     console.error(error);
-    result = {
-      errorCode: error.status,
-      errorMessage: error.statusText
-    }
+    result.status.errorMessage = error.message ?? error.statusText
   });
   return result;
 }
