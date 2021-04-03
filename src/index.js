@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './resources/index.css';
-import App from './components/App';
+import SplitsheetForm from './components/SplitsheetForm';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SplitsheetForm />
   </React.StrictMode>,
   document.getElementById('root')
 );
