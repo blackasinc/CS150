@@ -1,7 +1,7 @@
 import React from 'react';
 import loadingGif from '../resources/loading.gif';
 import Form from './Form';
-import RequestResultDisplay from './RequestResultDisplay';
+import ResultDisplay from './ResultDisplay';
 import postToApi from '../helper/postToApi';
 
 const SUBMIT_PENDING = 0;
@@ -44,7 +44,7 @@ class SplitsheetForm extends React.Component {
         );
       case SUBMITTED:
         return (
-          <RequestResultDisplay onReturn={this.resetState}
+          <ResultDisplay onReturn={this.resetState}
             splitsheet={this.state.splitsheet}
             splitsheetId={this.state.requestResult.splitsheetId}
             requestStatus={this.state.requestResult.status} />

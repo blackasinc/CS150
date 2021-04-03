@@ -19,8 +19,8 @@ async function postToApi(splitsheet) {
       return Promise.reject(response);
     }
   })
-  .then(data => {
-    result.splitsheetId = data.splitsheetId;
+  .then(body => {
+    result.splitsheetId = body.splitsheetId;
   })
   .catch(error => {
     console.error(error);
