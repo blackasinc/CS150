@@ -8,7 +8,7 @@ const RequestStatusDisplay = props => {
       <p>
         status code {props.requestStatus.statusCode}
         <br />
-        {props.request.errorMessage ?? ''}
+        {props.requestStatus.errorMessage ?? null}
       </p>
     </div>
   );
@@ -50,7 +50,8 @@ const SplitsheetDisplay = props => {
 const RequestResultDisplay = props => (
   <div>
     <RequestStatusDisplay requestStatus={props.requestStatus} />
-    {props.splitsheetId && <p>Splitsheet ID {props.splitsheetId}</p> }
+    {props.splitsheetId ? <p>Splitsheet ID {props.splitsheetId}</p>
+                        : null }
     <SplitsheetDisplay splitsheet={props.splitsheet} />
     <br />
     <button onClick={props.onReturn}>
