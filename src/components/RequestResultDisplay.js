@@ -50,10 +50,21 @@ const SplitsheetDisplay = props => {
   );
 };
 
+const SplitsheetIdDisplay = props => {
+  const permalinkUrl = `${window.location.origin}/splitsheet/${props.splitsheetId}`;
+  return (
+    <p>
+      Splitsheet ID {props.splitsheetId}
+      <br />
+      Permalink at <a href={permalinkUrl}>{permalinkUrl}</a>
+    </p>
+  );
+}
+
 const RequestResultDisplay = props => (
   <div>
     <RequestStatusDisplay requestStatus={props.requestStatus} />
-    {props.splitsheetId ? <p>Splitsheet ID {props.splitsheetId}</p>
+    {props.splitsheetId ? <SplitsheetIdDisplay splitsheetId={props.splitsheetId} />
                         : null }
     {props.splitsheet ? <SplitsheetDisplay splitsheet={props.splitsheet} />
                       : null }
