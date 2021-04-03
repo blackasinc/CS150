@@ -2,20 +2,13 @@ import React from 'react';
 import PdfDownloadButton from './PdfDownloadButton';
 
 const RequestStatusDisplay = props => {
-  let title, errorMessage;
-  if (props.requestStatus.didSucceed) {
-    title = 'Request Succeeded';
-  } else {
-    title = 'Request Failed';
-    errorMessage = `error message ${props.requestStatus.errorMessage}`;
-  }
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>Request {props.requestStatus.didSucceed ? 'Succeeded' : 'Failed' }</h1>
       <p>
         status code {props.requestStatus.statusCode}
         <br />
-        {errorMessage ?? ''}
+        {props.request.errorMessage ?? ''}
       </p>
     </div>
   );
