@@ -1,17 +1,7 @@
 import React from 'react';
 import RequestStatusDisplay from './RequestStatusDisplay';
 import SplitsheetDisplay from './SplitsheetDisplay';
-
-const SplitsheetIdDisplay = props => {
-  const permalinkUrl = `${window.location.origin}/splitsheet/${props.splitsheetId}`;
-  return (
-    <p>
-      Splitsheet ID {props.splitsheetId}
-      <br />
-      Permalink at <a href={permalinkUrl}>{permalinkUrl}</a>
-    </p>
-  );
-}
+import SplitsheetIdDisplay from './SplitsheetIdDisplay';
 
 const ResultDisplay = props => (
   <div>

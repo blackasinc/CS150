@@ -1,15 +1,6 @@
 import React from 'react';
-
-const FormInput = props => {
-  return (
-    <div>
-      <label>{props.title}:</label>
-      <input type={props.inputType}
-        value={props.defaultValue}
-        onChange={event => props.onChange(event)} />
-    </div>
-  )
-}
+import FormInput from './FormInput';
+import '../resources/Form.css';
 
 class Form extends React.Component {
   constructor(props) {
@@ -68,7 +59,7 @@ class Form extends React.Component {
             this.state.users.map((value, index) => (
               <div key={index}>
                 <p>User #{index + 1}</p>
-                <div>
+                <div className="user-inputs">
                   <FormInput title="First Name"
                     inputType="text"
                     defaultValue={value.first_name}
@@ -101,7 +92,7 @@ class Form extends React.Component {
             Add User
           </button>
           <FormInput title="Signed Date"
-            inputType="text"
+            inputType="date"
             defaultValue={this.state.signed_date}
             onChange={event => this.setState({signed_date: event.target.value})} />
           <FormInput title="Location"
